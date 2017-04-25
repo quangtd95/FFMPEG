@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">WrittingMindsDemo</string>
+    <string name="ffmpeg_cmd_hint">-version</string>
+    <string name="run">Process</string>
+    <string name="device_not_supported">Thiết bị không được hỗ trợ</string>
+    <string name="device_not_supported_message">Thiết bị không được hỗ trợ</string>
+    <string name="empty_command_toast">Empty Command</string>
+</resources>
