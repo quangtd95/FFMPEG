@@ -14,6 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minLines="3"
+        android:maxLines="10"
         android:hint="@string/ffmpeg_cmd_hint"
         android:gravity="start" />
 

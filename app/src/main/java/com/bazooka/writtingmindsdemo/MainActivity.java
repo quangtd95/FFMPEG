@@ -339,36 +339,36 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 //if(x,y,z) ifnot(x,y,z)
                 cmd4 = "-y -i /storage/emulated/0/PICTURES/a/outconcat2.mp4 -filter_complex smartblur=lr=5:enable='between(t,5,10)' /storage/emulated/0/PICTURES/a/blurvideo.mp4";
 
-                cmd4= "-i /storage/emulated/0/PICTURES/a/in.mp4" +
+                cmd4 = "-i /storage/emulated/0/PICTURES/a/in.mp4" +
                         " -i /storage/emulated/0/PICTURES/a/outconcat2.mp4 -q 6 -filter_complex" +
                         " [0][1]blend=all_expr='A*(if(gte(T,4),1,T/4))+B*(1-(if(gte(T,4),1,T/4)))' /storage/emulated/0/PICTURES/a/blendoutput.mp4";
-                cmd4= "-i /storage/emulated/0/PICTURES/a/in.mp4 -ss 00:00:02.000 /storage/emulated/0/PICTURES/a/outseeking.mp4";
+                cmd4 = "-i /storage/emulated/0/PICTURES/a/in.mp4 -ss 00:00:02.000 /storage/emulated/0/PICTURES/a/outseeking.mp4";
 
-                cmd4 ="-i /storage/emulated/0/PICTURES/a/inputken.mp4 -vf 'unsharp=6:6:-2' /storage/emulated/0/PICTURES/a/outputken.mp4";
+                cmd4 = "-i /storage/emulated/0/PICTURES/a/inputken.mp4 -vf 'unsharp=6:6:-2' /storage/emulated/0/PICTURES/a/outputken.mp4";
 
 
                 //I have used the below command to make a left to right transition of overlay image over a video.
 
-                  cmd4="-y -i /storage/emulated/0/PICTURES/a/inputken.mp4 " +
-                          "-i /storage/emulated/0/PICTURES/a/icon_thumbnail.png " +
-                          "-filter_complex overlay=x='if(gte(t,0),-w+(t)*100,3)':y=450 " +
-                          "/storage/emulated/0/PICTURES/a/outputkentrancision.mp4";
+                cmd4 = "-y -i /storage/emulated/0/PICTURES/a/inputken.mp4 " +
+                        "-i /storage/emulated/0/PICTURES/a/icon_thumbnail.png " +
+                        "-filter_complex overlay=x='if(gte(t,0),-w+(t)*100,3)':y=450 " +
+                        "/storage/emulated/0/PICTURES/a/outputkentrancision.mp4";
 
                 //crop :))
-                cmd4= "-i /storage/emulated/0/PICTURES/a/inputken.mp4 -vf crop=200:200 /storage/emulated/0/PICTURES/a/outputkenCrop.mp4";
+                cmd4 = "-i /storage/emulated/0/PICTURES/a/inputken.mp4 -vf crop=200:200 /storage/emulated/0/PICTURES/a/outputkenCrop.mp4";
 
                 //speed up
-                cmd4="-i /storage/emulated/0/PICTURES/a/inputken.mp4 -vf setpts=0.25*PTS /storage/emulated/0/PICTURES/a/outputkenSpeedUp.mp4";
+                cmd4 = "-i /storage/emulated/0/PICTURES/a/inputken.mp4 -vf setpts=0.25*PTS /storage/emulated/0/PICTURES/a/outputkenSpeedUp.mp4";
 
                 //screen shot mosaic.
-                cmd4= "-i /storage/emulated/0/PICTURES/a/inputken.mp4 -vf scale=160:120,tile -frames:v 1 /storage/emulated/0/PICTURES/a/outputkenmosaic.png";
+                cmd4 = "-i /storage/emulated/0/PICTURES/a/inputken.mp4 -vf scale=160:120,tile -frames:v 1 /storage/emulated/0/PICTURES/a/outputkenmosaic.png";
 
                 //scalse
-                cmd4="-i /storage/emulated/0/PICTURES/a/img001.png -vf scale=50:50 img001_50_50.png";
+                cmd4 = "-i /storage/emulated/0/PICTURES/a/img001.png -vf scale=50:50 img001_50_50.png";
 
 
                 //overlap
-                cmd4="-y -i /storage/emulated/0/PICTURES/a/img001_50_50.png " +
+                cmd4 = "-y -i /storage/emulated/0/PICTURES/a/img001_50_50.png " +
                         " -i /storage/emulated/0/PICTURES/a/inputken.mp4 " +
                         "-filter_complex overlay='if(gte(t,0),-w+(t)*100,3)':200 " +
                         "/storage/emulated/0/PICTURES/a/test2.mp4";
@@ -380,11 +380,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 //drawgrid=w=iw/1:h=ih/64:t=2:c=black@0.5
                 //pixel
-                cmd4="-i /storage/emulated/0/PICTURES/a/inputken.mp4 -filter:v frei0r=pixeliz0r=0.02:0.02 /storage/emulated/0/PICTURES/a/kenpixel.mp4";
-                cmd4="-i /storage/emulated/0/PICTURES/a/inputken.mp4 -vf drawgrid=w=iw/1:h=ih/64:t=2:c=black@0.5 /storage/emulated/0/PICTURES/a/kendrawgrid.mp4";
+                cmd4 = "-i /storage/emulated/0/PICTURES/a/inputken.mp4 -filter:v frei0r=pixeliz0r=0.02:0.02 /storage/emulated/0/PICTURES/a/kenpixel.mp4";
+                cmd4 = "-i /storage/emulated/0/PICTURES/a/inputken.mp4 -vf drawgrid=w=iw/1:h=ih/64:t=2:c=black@0.5 /storage/emulated/0/PICTURES/a/kendrawgrid.mp4";
 
                 //zoom in, chạy dược
-                cmd4= "-loop 1 -i /storage/emulated/0/PICTURES/a/img001.png " +
+                cmd4 = "-loop 1 -i /storage/emulated/0/PICTURES/a/img001.png " +
                         "-vf zoompan=z='min(zoom+0.0015,1.5)':d=125 " +
                         "-c:v libx264 " +
                         "-t 5 " +
@@ -393,7 +393,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         "/storage/emulated/0/PICTURES/a/img001zoomin.mp4";
 
                 //zoom out,
-                cmd4="-loop 1 -i /storage/emulated/0/PICTURES/a/img001.png " +
+                cmd4 = "-loop 1 -i /storage/emulated/0/PICTURES/a/img001.png " +
                         "-vf zoompan=z='if(lte(zoom,1.0),1.5,max(1.001,zoom-0.0015))':d=125 " +
                         "-c:v libx264 " +
                         "-t 5 " +
@@ -401,8 +401,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         "-s 800x450 /storage/emulated/0/PICTURES/a/img001zomout.mp4";
 
                 //combination zoompan and fade
-                cmd4="-y -t 5 -i /storage/emulated/0/PICTURES/a/img001.png "+
-                        "-t 5 -i /storage/emulated/0/PICTURES/a/img002.png "+
+                cmd4 = "-y -t 5 -i /storage/emulated/0/PICTURES/a/img001.png " +
+                        "-t 5 -i /storage/emulated/0/PICTURES/a/img002.png " +
                         "-filter_complex " +
                         "[0:v]zoompan=z='min(zoom+0.0015,1.5)':d=125,fade=t=out:d=5[v0];" +
                         "[1:v]zoompan=z='if(lte(zoom,1.0),1.5,max(1.001,zoom-0.0015))':d=125,fade=t=in:d=5[v1];" +
@@ -414,11 +414,69 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
                 //flower effect
-                cmd4="-i /storage/emulated/0/PICTURES/a/outfiltercomplex.mp4 " +
+                cmd4 = "-i /storage/emulated/0/PICTURES/a/outfiltercomplex.mp4 " +
                         "-i /storage/emulated/0/PICTURES/a/flower.mkv " +
                         "-filter_complex " +
-                        "[0:v]cale=640x480,setsar=1:1[v0];" +
+                        "[0:v]scale=640x480,setsar=1:1[v0];" +
                         "[v0][1]blend=all_expr='if(eq(mod(X,2),mod(Y,2)),A,B)' -shortest -preset ultrafast /storage/emulated/0/PICTURES/a/outflower.mp4";
+
+                //flower effect + audio
+                cmd4 = "-y -i /storage/emulated/0/PICTURES/a/outfiltercomplex.mp4 " +
+                        "-i /storage/emulated/0/PICTURES/a/flower.mkv " +
+                        "-i /storage/emulated/0/PICTURES/a/wing.mp3 " +
+                        "-filter_complex " +
+                        "[0:v]scale=640x480,setsar=1:1[v0];" +
+                        "[v0][1:v]blend=all_expr='if(eq(mod(X,2),mod(Y,2)),A,B)'[v1] " +
+                        "-c copy -map [v1]:0 -map 2:0 -c:v libx264 -preset ultrafast -shortest /storage/emulated/0/PICTURES/a/flowerwithaudio.mp4";
+
+
+                /*
+                ffmpeg -y
+                -r 25
+                -loop 1 -t 5 -i F:\ffmpeg\images\001.png
+                -loop 1 -t 5 -i F:\ffmpeg\images\002.png
+                -filter_complex
+                "[0]fade=t=in:st=0:d=2[v0];
+                [1]fade=t=out:st=3:d=2[v1];
+                [v0][v1]concat=n=2:v=1:a=0,format=yuv420p[v]"
+                -map [v] -c:v libx264
+                -t 10 F:\ffmpeg\test11.mp4
+                 */
+
+                /*
+                    For slides, you need a dynamic overlay, so change to
+
+                    -loop 1 -t 3 -i img002.png \
+                    -loop 1 -t 9 -i img003.png \
+                    -loop 1 -t 9 -i img004.png \
+                    -loop 1 -t 9 -i img005.png \
+                    and
+
+                    [2:v]zoompan=z='zoom+0.001':d=75:x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':s=1200x478[v2];
+                    [v2][3:v]overlay='max(W*(7-2*t)\,0)':(H-h)/2[v3]; \
+                 [v3][4:v]overlay='min(W*(2*t-14)\,0)':(H-h)/2[v4]; \
+                [v0][v1][v4]concat=n=3:v=1:a=0,format=yuv420p[v]" -map "[v]" out.mp4
+                 */
+                cmd4 = "-y " +
+                        "-t 5 -i /storage/emulated/0/PICTURES/a/img001.png " +//0
+                        "-t 5 -i /storage/emulated/0/PICTURES/a/img002.png " +//1
+                        "-t 5 -i /storage/emulated/0/PICTURES/a/img003.png " +//2
+                        "-t 5 -i /storage/emulated/0/PICTURES/a/img004.png " +//3
+                        "-t 5 -i /storage/emulated/0/PICTURES/a/img005.png " +//4
+                        "-t 5 -i /storage/emulated/0/PICTURES/a/img006.png " +//5
+                        "-i /storage/emulated/0/PICTURES/a/flower.MKV " +//6
+                        "-i /storage/emulated/0/PICTURES/a/wing.mp3 " +//7
+                        "-filter_complex " +
+                        "[0:v]zoompan=z='min(zoom+0.0015,1.5)':d=125,fade=t=in:st=0:d=1,fade=t=out:st=4:d=1[v0];" +
+                        "[1:v]zoompan=z='if(lte(zoom,1.0),1.5,max(1.001,zoom-0.0015))':d=125,fade=t=in:st=0:d=1,fade=t=out:st=4:d=1[v1];" +
+                        "[2:v]zoompan=z='min(zoom+0.0015,1.5)':d=125,fade=t=in:st=0:d=1,fade=t=out:st=4:d=1[v2];" +
+                        "[3:v]zoompan=z='if(lte(zoom,1.0),1.5,max(1.001,zoom-0.0015))':d=125,fade=t=in:st=0:d=1,fade=t=out:st=4:d=1[v3];" +
+                        "[4:v]zoompan=z='min(zoom+0.0015,1.5)':d=125,fade=t=in:st=0:d=1,fade=t=out:st=4:d=1[v4];" +
+                        "[5:v]zoompan=z='if(lte(zoom,1.0),1.5,max(1.001,zoom-0.0015))':d=125,fade=t=in:st=0:d=1,fade=t=out:st=4:d=1[v5];" +
+                        "[v0][v1][v2][v3][v4][v5]concat=n=6,format=yuv420p[v7];" +
+                        "[v7]scale=640*480,setsar=1:1[v8];" +
+                        "[6:0][v8]blend=all_expr='if(eq(mod(X,2),mod(Y,2)),A,B)'[v9] " +
+                        "-c copy -map [v9] -map 7:0 -c:v libx264 -preset ultrafast -shortest /storage/emulated/0/PICTURES/a/mostComplex2.mp4";
 
                 String[] command = cmd1.split(" ");
                 String[] commandNext = cmd2.split(" ");
