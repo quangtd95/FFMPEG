@@ -313,37 +313,135 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         "[4:v]fade=t=in:st=0:d=1,fade=t=out:st=4:d=1[v4];" +
                         "[v0][v1][v2][v3][v4]concat=n=5:v=1:a=0,format=yuv420p[v] -map [v] /storage/emulated/0/PICTURES/a/outconcat.mp4";
 
-                //lỗi
-                cmd3 = "-loop 1 -t 5 -i /storage/emulated/0/PICTURES/a/img001.png" +
-                        " -loop 1 -t 5 -i /storage/emulated/0/PICTURES/a/img002.png" +
-                        " -loop 1 -t 5 -i /storage/emulated/0/PICTURES/a/img003.png" +
-                        " -loop 1 -t 5 -i /storage/emulated/0/PICTURES/a/img004.png" +
-                        " -loop 1 -t 5 -i /storage/emulated/0/PICTURES/a/img005.png" +
-                        " -filter_complex" +
-                        " [1:v][0:v]blend=all_expr='A*(if(gte(T,0.5),1,T/0.5))+B*(1-(if(gte(T,0.5),1,T/0.5)))'[b1v];" +
-                        "[2:v][1:v]blend=all_expr='A*(if(gte(T,0.5),1,T/0.5))+B*(1-(if(gte(T,0.5),1,T/0.5)))'[b2v];" +
-                        "[3:v][2:v]blend=all_expr='A*(if(gte(T,0.5),1,T/0.5))+B*(1-(if(gte(T,0.5),1,T/0.5)))'[b3v];" +
-                        "[4:v][3:v]blend=all_expr='A*(if(gte(T,0.5),1,T/0.5))+B*(1-(if(gte(T,0.5),1,T/0.5)))'[b4v];" +
-                        "[0:v][b1v][1:v][b2v][2:v][b3v][3:v][b4v][4:v]concat=n=9:v=1:a=0,format=yuv420p[v] -map [v] -threads 16 -preset ultrafast /storage/emulated/0/PICTURES/a/outconcat222.mp4";
 
                 //grey effect
                 cmd3 = "-y -i /storage/emulated/0/PICTURES/a/outconcat2.mp4 -strict experimental -vf hue=s=0 -vcodec mpeg4 -b:v 2097152 -r 30 /storage/emulated/0/PICTURES/a/grey.mp4";
 
+                //code chạy được
+                //hơi lâu tí
+                //sephia effects.
+                String[] complexCommand = {"-y", "-i", "/storage/emulated/0/PICTURES/a/outconcat2.mp4", "-strict", "experimental", "-filter_complex",
+                        "[0:v]colorchannelmixer=.393:.769:.189:0:.349:.686:.168:0:.272:.534:.131[colorchannelmixed];[colorchannelmixed]eq=1.0:0:1.3:2.4:1.0:1.0:1.0:1.0[color_effect]",
+                        "-map", "[color_effect]", "-map", "0:a", "-vcodec", "mpeg4", "-b", "15496k", "-ab", "48000", "-ac", "2", "-ar", "22050", "-threads", "8", "-preset", "ultrafast", "/storage/emulated/0/PICTURES/a/sephia.mp4"};
+
+                //code chay ngon.
+                String cmd4 = "-i /storage/emulated/0/PICTURES/a/camera.jpg -filter colorbalance=rs=-0.3:bs=0.3:rh=0.1:bh=-0.1 /storage/emulated/0/PICTURES/a/outCamera.jpg";
+
+                //colorbalance chayj dduowcj
+                cmd4 = "-i /storage/emulated/0/PICTURES/a/camera.jpg -filter colorbalance=rs=0.4:bs=0.4 /storage/emulated/0/PICTURES/a/outCamerars0.4bs0.4.jpg";
+
+                //chạy được
+                cmd4 = "-y -i /storage/emulated/0/PICTURES/a/in.mp4 -vf eq=saturation=1.3,unsharp /storage/emulated/0/PICTURES/a/out_eq_saturation_13.mp4";
+
+                //chạy được
+                //gt(x,y) ,gte(x,y),lt(x,y),ltx(x,y)
+                //between(x,min,max)
+                //if(x,y,z) ifnot(x,y,z)
+                cmd4 = "-y -i /storage/emulated/0/PICTURES/a/outconcat2.mp4 -filter_complex smartblur=lr=5:enable='between(t,5,10)' /storage/emulated/0/PICTURES/a/blurvideo.mp4";
+
+                cmd4= "-i /storage/emulated/0/PICTURES/a/in.mp4" +
+                        " -i /storage/emulated/0/PICTURES/a/outconcat2.mp4 -q 6 -filter_complex" +
+                        " [0][1]blend=all_expr='A*(if(gte(T,4),1,T/4))+B*(1-(if(gte(T,4),1,T/4)))' /storage/emulated/0/PICTURES/a/blendoutput.mp4";
+                cmd4= "-i /storage/emulated/0/PICTURES/a/in.mp4 -ss 00:00:02.000 /storage/emulated/0/PICTURES/a/outseeking.mp4";
+
+                cmd4 ="-i /storage/emulated/0/PICTURES/a/inputken.mp4 -vf 'unsharp=6:6:-2' /storage/emulated/0/PICTURES/a/outputken.mp4";
+
+
+                //I have used the below command to make a left to right transition of overlay image over a video.
+
+                  cmd4="-y -i /storage/emulated/0/PICTURES/a/inputken.mp4 " +
+                          "-i /storage/emulated/0/PICTURES/a/icon_thumbnail.png " +
+                          "-filter_complex overlay=x='if(gte(t,0),-w+(t)*100,3)':y=450 " +
+                          "/storage/emulated/0/PICTURES/a/outputkentrancision.mp4";
+
+                //crop :))
+                cmd4= "-i /storage/emulated/0/PICTURES/a/inputken.mp4 -vf crop=200:200 /storage/emulated/0/PICTURES/a/outputkenCrop.mp4";
+
+                //speed up
+                cmd4="-i /storage/emulated/0/PICTURES/a/inputken.mp4 -vf setpts=0.25*PTS /storage/emulated/0/PICTURES/a/outputkenSpeedUp.mp4";
+
+                //screen shot mosaic.
+                cmd4= "-i /storage/emulated/0/PICTURES/a/inputken.mp4 -vf scale=160:120,tile -frames:v 1 /storage/emulated/0/PICTURES/a/outputkenmosaic.png";
+
+                //scalse
+                cmd4="-i /storage/emulated/0/PICTURES/a/img001.png -vf scale=50:50 img001_50_50.png";
+
+
+                //overlap
+                cmd4="-y -i /storage/emulated/0/PICTURES/a/img001_50_50.png " +
+                        " -i /storage/emulated/0/PICTURES/a/inputken.mp4 " +
+                        "-filter_complex overlay='if(gte(t,0),-w+(t)*100,3)':200 " +
+                        "/storage/emulated/0/PICTURES/a/test2.mp4";
+
+                //theem noise
+
+                //-vf noise=alls=20:allf=t+u
+                //curves=r='0/0.11 .42/.51 1/0.95':g='0.50/0.48':b='0/0.22 .49/.44 1/0.8'
+
+                //drawgrid=w=iw/1:h=ih/64:t=2:c=black@0.5
+                //pixel
+                cmd4="-i /storage/emulated/0/PICTURES/a/inputken.mp4 -filter:v frei0r=pixeliz0r=0.02:0.02 /storage/emulated/0/PICTURES/a/kenpixel.mp4";
+                cmd4="-i /storage/emulated/0/PICTURES/a/inputken.mp4 -vf drawgrid=w=iw/1:h=ih/64:t=2:c=black@0.5 /storage/emulated/0/PICTURES/a/kendrawgrid.mp4";
+
+                //zoom in, chạy dược
+                cmd4= "-loop 1 -i /storage/emulated/0/PICTURES/a/img001.png " +
+                        "-vf zoompan=z='min(zoom+0.0015,1.5)':d=125 " +
+                        "-c:v libx264 " +
+                        "-t 5 " +
+                        "-s 300x200 " +
+                        "-pix_fmt yuv420p " +
+                        "/storage/emulated/0/PICTURES/a/img001zoomin.mp4";
+
+                //zoom out,
+                cmd4="-loop 1 -i /storage/emulated/0/PICTURES/a/img001.png " +
+                        "-vf zoompan=z='if(lte(zoom,1.0),1.5,max(1.001,zoom-0.0015))':d=125 " +
+                        "-c:v libx264 " +
+                        "-t 5 " +
+                        "-pix_fmt yuv420p " +
+                        "-s 800x450 /storage/emulated/0/PICTURES/a/img001zomout.mp4";
+
+                //combination zoompan and fade
+                cmd4="-y -t 5 -i /storage/emulated/0/PICTURES/a/img001.png "+
+                        "-t 5 -i /storage/emulated/0/PICTURES/a/img002.png "+
+                        "-filter_complex " +
+                        "[0:v]zoompan=z='min(zoom+0.0015,1.5)':d=125,fade=t=out:d=5[v0];" +
+                        "[1:v]zoompan=z='if(lte(zoom,1.0),1.5,max(1.001,zoom-0.0015))':d=125,fade=t=in:d=5[v1];" +
+                        "[v0][v1]concat=n=2:v=0:v=1,format=yuv420p[v] " +
+                        "-map [v] /storage/emulated/0/PICTURES/a/outfiltercomplex.mp4";
+
+                //set sar
+                //ffmpeg -i input.mov -vf scale=720x406,setsar=1:1 output.mov
+
+
+                //flower effect
+                cmd4="-i /storage/emulated/0/PICTURES/a/outfiltercomplex.mp4 " +
+                        "-i /storage/emulated/0/PICTURES/a/flower.mkv " +
+                        "-filter_complex " +
+                        "[0:v]cale=640x480,setsar=1:1[v0];" +
+                        "[v0][1]blend=all_expr='if(eq(mod(X,2),mod(Y,2)),A,B)' -shortest -preset ultrafast /storage/emulated/0/PICTURES/a/outflower.mp4";
+
                 String[] command = cmd1.split(" ");
                 String[] commandNext = cmd2.split(" ");
                 String[] command3 = cmd3.split(" ");
+                String[] command4 = cmd4.split(" ");
 
-                //code chạy được
-                //hơi lâu tí
-                String[] complexCommand = {"-y", "-i", "/storage/emulated/0/PICTURES/a/outconcat2.mp4", "-strict", "experimental", "-filter_complex",
-                        "[0:v]colorchannelmixer=.393:.769:.189:0:.349:.686:.168:0:.272:.534:.131[colorchannelmixed];[colorchannelmixed]eq=1.0:0:1.3:2.4:1.0:1.0:1.0:1.0[color_effect]",
-                        "-map", "[color_effect]", "-map", "0:a", "-vcodec", "mpeg4", "-b", "15496k", "-ab", "48000", "-ac", "2", "-ar", "22050","-threads","8","-preset","ultrafast", "/storage/emulated/0/PICTURES/a/sephia.mp4"};
 
-                if (command.length != 0) {
-                //execFFmpegBinary(command, commandNext);
-                    execFFmpegBinary(complexCommand);
+                if (commandEditText.getText().toString().isEmpty()) {
+                    if (command4.length != 0) {
+                        //execFFmpegBinary(command, commandNext);
+                        // execFFmpegBinary(complexCommand);
+                        commandEditText.setText(cmd4);
+                        execFFmpegBinary(command4);
+                    } else {
+                        Toast.makeText(MainActivity.this, getString(R.string.empty_command_toast), Toast.LENGTH_LONG).show();
+                    }
+                    break;
+
                 } else {
-                    Toast.makeText(MainActivity.this, getString(R.string.empty_command_toast), Toast.LENGTH_LONG).show();
+
+                    //execFFmpegBinary(command, commandNext);
+                    // execFFmpegBinary(complexCommand);
+                    execFFmpegBinary(commandEditText.getText().toString().split(" "));
                 }
                 break;
         }
